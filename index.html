@@ -158,7 +158,7 @@
     .hero {
       background: radial-gradient(circle at top right, #4E161B 0%, #240B0D 65%, #190708 100%);
       color: #FFFFFF;
-      padding: 28px 20px 30px;
+      padding: 38px 20px 32px;
       text-align: center;
       position: relative;
     }
@@ -171,7 +171,7 @@
     .brand-logo {
       width: 96px;
       height: 96px;
-      margin: 0 auto 12px;
+      margin: 0 auto 14px;
       border-radius: 50%;
       background: #FFFFFF;
       border: 2px solid rgba(255, 255, 255, 0.35);
@@ -206,7 +206,7 @@
       border: 1px solid rgba(246, 197, 199, 0.25);
       padding: 4px 12px;
       border-radius: var(--radius-pill);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .brand-name {
@@ -214,7 +214,7 @@
       font-size: 2.1rem;
       font-weight: 700;
       line-height: 1.15;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .brand-meta {
@@ -224,7 +224,7 @@
       flex-direction: column;
       align-items: center;
       gap: 5px;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .hero-actions {
@@ -273,7 +273,7 @@
       transform: translateY(-1px);
     }
 
-    /* Sabitlenen Arama ve Kategori Alanı (Üst kısımdan ayrılmış, ferah konumlu) */
+    /* Sabitlenen Arama ve Kategori Alanı */
     .sticky-controls {
       position: sticky;
       top: 0;
@@ -347,7 +347,7 @@
       display: flex;
     }
 
-    /* Kategori Barı (Filtre değil, yumuşak sayfa içi yönlendirme) */
+    /* Kategori Barı */
     .category-bar {
       display: flex;
       gap: 8px;
@@ -386,7 +386,6 @@
       transform: scale(0.96);
     }
 
-    /* "Tümü" butonu her zaman seçili kalır */
     .category-btn.always-all {
       background: var(--primary);
       border-color: var(--primary);
@@ -462,7 +461,6 @@
       transition: background-color 0.55s ease, border-color 0.55s ease, transform 0.35s ease, box-shadow 0.55s ease;
     }
 
-    /* Ürün Kartı Üzerine Gelince veya Telefonda Dokunulunca Yavaşça Bordomsu Renge Bürünür */
     .product-card:hover,
     .product-card.touch-bordeaux {
       background-color: var(--primary-hover-bg);
@@ -744,7 +742,7 @@
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
-          <span id="instagramLabel">uzunhikayekafe</span>
+          <span id="instagramLabel">uzunhikayeecafe</span>
         </a>
       </div>
     </div>
@@ -801,7 +799,7 @@
       sheetUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYM2keVBFEnXGx6ZPFFtZeOJNlVDxAtiHyxdVnIHjEqoRZwXA6vZGKPI9V9Bx_QYKJMpnI_L3O29IP/pub?output=csv",
       name: "Uzun Hikaye",
       badge: "Cafe & Bistro",
-      address: "Köşk, Çevre Sk. No:15 D:13, Melikgazi/Kayseri",
+      address: "",
       currency: "₺",
       instagramUser: "uzunhikayeecafe",
       googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=K%C3%B6%C5%9Fk+%C3%87evre+Sk.+No:15+D:13+38030+Melikgazi+Kayseri",
@@ -834,8 +832,19 @@
       document.getElementById("splashSub").textContent = CAFE_CONFIG.badge;
       document.getElementById("footerText").textContent = `${CAFE_CONFIG.name} ${CAFE_CONFIG.badge} — Afiyet Olsun`;
 
-      document.getElementById("workingHoursText").textContent = CAFE_CONFIG.workingHours ? `🕒 ${CAFE_CONFIG.workingHours}` : "";
-      document.getElementById("addressText").textContent = CAFE_CONFIG.address ? `📍 ${CAFE_CONFIG.address}` : "";
+      const hoursEl = document.getElementById("workingHoursText");
+      if (CAFE_CONFIG.workingHours) {
+        hoursEl.textContent = `🕒 ${CAFE_CONFIG.workingHours}`;
+      } else {
+        hoursEl.style.display = "none";
+      }
+
+      const addrEl = document.getElementById("addressText");
+      if (CAFE_CONFIG.address) {
+        addrEl.textContent = `📍 ${CAFE_CONFIG.address}`;
+      } else {
+        addrEl.style.display = "none";
+      }
 
       const mapsBtn = document.getElementById("mapsBtn");
       if (CAFE_CONFIG.googleMapsUrl) {
